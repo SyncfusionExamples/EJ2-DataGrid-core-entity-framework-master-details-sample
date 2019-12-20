@@ -1,0 +1,40 @@
+﻿<div>
+    <div style="font-weight: bold; font-size:20px;">Master</div>
+    <ejs-grid id="Master" width="1000" selectedRowIndex="0" rowSelected="rowSelected" allowPaging="true" allowSorting="true" toolbar="@(new List<string>() { "Add", "Edit", "Delete","Update","Cancel" })">
+        <e-data-manager url="/DataGrid/UrlDataSource" adaptor="UrlAdaptor" insertUrl="/DataGrid/Insert" updateUrl="/DataGrid/Update" removeUrl="/DataGrid/Delete"></e-data-manager>
+        <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Normal"></e-grid-editSettings>
+        <e-grid-pageSettings pageSize="5"></e-grid-pageSettings>
+        <e-grid-columns>
+            <e-grid-column field="OrderID" headerText="OrderID" width="100" isIdentity="true" isPrimaryKey="true"></e-grid-column>
+            <e-grid-column field="CustomerID" headerText="CustomerID" width="100"></e-grid-column>
+            <e-grid-column field="EmployeeID" headerText="ID" width="80"></e-grid-column>
+            <e-grid-column field="ShipName" headerText="ShipName" width="200"></e-grid-column>
+            <e-grid-column field="ShipCity" headerText="ShipCity" width="100"></e-grid-column>
+        </e-grid-columns>
+    </ejs-grid>
+</div>
+<div style="margin-top:20px;">
+    <div style="font-weight: bold; font-size:20px;">Details</div>
+    <ejs-grid id="Details"  width="1000">
+        <e-data-manager url="/DataGrid/UrlData" adaptor="UrlAdaptor"></e-data-manager>
+        <e-grid-columns>
+            <e-grid-column field="EmployeeID" headerText="Employee ID" isIdentity="true" isPrimaryKey="true"></e-grid-column>
+            <e-grid-column field="Name" headerText="Name"></e-grid-column>
+            <e-grid-column field="ItemNo" headerText="Item No"></e-grid-column>
+            <e-grid-column field="ItemDetails" headerText="Item Details"></e-grid-column>
+        </e-grid-columns>
+    </ejs-grid>
+</div>
+
+<script>
+    function rowSelected(args) {
+        var detailGrid = document.getElementById('Details').ej2_instances[0];
+        new ej.data.DataManager({ url: '/DataGrid/UrlData', adaptor: new ej.data.UrlAdaptor })
+            .executeQuery(new ej.data.Query().where('EmployeeID', 'equal', args.data.EmployeeID))
+            .then((e) => {
+                debugger
+                detailGrid.dataSource = e.result;
+            });
+        }
+</script>
+
