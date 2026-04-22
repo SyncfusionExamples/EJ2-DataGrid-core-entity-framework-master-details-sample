@@ -10,9 +10,9 @@ This sample explains how to implement the master-details grid pattern with ASP.N
 
 ## Key Features
 
-- Master-Details Grid Layout with expandable rows
-- Complete CRUD Operations (Create, Read, Update, Delete)
-- Advanced Filtering capabilities
+- Master-Details Grid layout with expandable rows
+- Complete CRUD operations (Create, Read, Update, Delete)
+- Advanced filtering capabilities
 - Pagination support for efficient data handling
 - Multi-column sorting in ascending and descending order
 - Entity Framework Core integration for data access
